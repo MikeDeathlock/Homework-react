@@ -1,0 +1,11 @@
+.main-search {
+    padding: 0.8%;
+    background-color: #e2e1e1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-search button {
+    width: 50px;
+}
