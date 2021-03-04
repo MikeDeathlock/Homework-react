@@ -14,9 +14,9 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="footer-links">
-                        <a href="#"><i class="fa fa-twitter-square"></i></a>
-                        <a href="#"><i class="fa fa-facebook-square"></i></a>
-                        <a href="#"><i class="fa fa-telegram"></i></a>
+                        <a href="#"><i className="fa fa-twitter-square"></i></a>
+                        <a href="#"><i className="fa fa-facebook-square"></i></a>
+                        <a href="#"><i className="fa fa-telegram"></i></a>
                     </div>
                     <div className="bottom-footer">
                         <p>Created by Myself <a href="#">MyREACTsite.com</a></p>

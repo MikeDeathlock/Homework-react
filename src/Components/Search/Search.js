@@ -7,7 +7,7 @@ const Search = () => {
             <div className="container-fluid">
                 <div className="container">
                     <div className="main-search">
-                        <input type="text" />
+                        <input type="text" name="search" placeholder="Search" />
                         <button>
                             <i className="fa fa-search"></i>
                         </button>

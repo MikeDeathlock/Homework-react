@@ -2,6 +2,9 @@ import React, {Fragment, Component} from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+// import uuid
+import { v4 as uuidv4 } from 'uuid';
+
 // Components
 import Header from "./Components/Header/Header";
 import Search from "./Components/Search/Search";
@@ -9,58 +12,89 @@ import ContactList from "./Components/ContactList/ContactList";
 import Footer from "./Components/Footer/Footer";
 
 class App extends Component {
-
   state = {
     List: [
       {
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar3.png",
+        "Id": uuidv4(),
+        "Avatar": "66",
         "Name": "Mila Kunis",
         "Created": "2013/08/08",
         "Role": "Admin",
         "Status": "Inactive",
-        "Email": "mila@kunis.com"
+        "Email": "mila@kunis.com",
+        "Gender": "women"
       },
       {
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar2.png",
+        "Id": uuidv4(),
+        "Avatar": "7",
         "Name": "Camil Jonson",
         "Created": "2013/08/16",
         "Role": "User",
         "Status": "Active",
-        "Email": "camil@jonson.com"
+        "Email": "camil@jonson.com",
+        "Gender": "men"
       },
       {
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar1.png",
+        "Id": uuidv4(),
+        "Avatar": "3",
         "Name": "George Clooney",
         "Created": "2013/08/12",
         "Role": "User",
         "Status": "Active",
-        "Email": "marlon@brando.com"
+        "Email": "marlon@brando.com",
+        "Gender": "men"
       },
       {
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar8.png",
+        "Id": uuidv4(),
+        "Avatar": "23",
         "Name": "Emma Watson",
         "Created": "2004/01/24",
         "Role": "User",
-        "Status": "Inactive",
-        "Email": "humphrey@bogart.com"
+        "Status": "Pending",
+        "Email": "humphrey@bogart.com",
+        "Gender": "women"
       },
       {
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar7.png",
+        "Id": uuidv4(),
+        "Avatar": "9",
         "Name": "Robert Downey Jr",
         "Created": "2013/12/31",
         "Role": "User",
         "Status": "Active",
-        "Email": "spencer@tracy.com"
+        "Email": "spencer@tracy.com",
+        "Gender": "men"
       },
       {
-        "Avatar": "https://bootdey.com/img/Content/avatar/avatar4.png",
+        "Id": uuidv4(),
+        "Avatar": "77",        
         "Name": "Ryan Gossling",
         "Created": "2013/03/03",
         "Role": "User",
         "Status": "Banned",
-        "Email": "jack@nicholson.com"
+        "Email": "jack@nicholson.com",
+        "Gender": "men"
       }
     ]
+  }
+
+  onStatusChange = (Id) =>{    
+    const index = this.state.List.findIndex((elem) => elem.Id === Id );
+    let newList = this.state.List.slice();
+    if(newList[index].Status === "Inactive"){
+      newList[index].Status = "Active";
+    } else if (newList[index].Status === "Active") {
+      newList[index].Status = "Pending";
+    } else if (newList[index].Status === "Pending") {
+      newList[index].Status = "Banned";
+    } else {
+      newList[index].Status = "Inactive";
+    }
+    this.setState(() => {
+      return {
+        List: newList
+      }
+    })
+    
   }
 
   render(){
@@ -69,7 +103,7 @@ class App extends Component {
       <Fragment>
         <Header />
         <Search />
-        <ContactList List={List} />
+        <ContactList List={List} onStatusChange={this.onStatusChange} />
         <Footer />
       </Fragment>    
     )

@@ -2,7 +2,7 @@
     background-color: #e7dfdf;
     box-sizing: border-box;
     margin-top: 0;
-    border-bottom: 1px solid #000;
+    box-shadow: 1px 2px 4px grey;
 }
 
 .main-header {
