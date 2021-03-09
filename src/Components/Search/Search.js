@@ -14,8 +14,7 @@ const Search = () => {
                     </div>
                 </div>
             </div>
-        </Fragment>
-        
+        </Fragment>    
     )
 }
 

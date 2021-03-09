@@ -29,18 +29,26 @@
     color: black;
 }
 
+.footer-list a:hover {
+    color: red;
+}
+
 .footer-links {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 30px;
-    color: #000;
 }
 
 .footer-links a {
     color: #000;
     text-decoration: none;
     margin-right: 10px;
+}
+
+.footer-links a:hover {
+    color: red;
+
 }
 
 .bottom-footer {

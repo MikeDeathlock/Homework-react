@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ContactItem.css";
 
 class ContactItem extends React.Component  {
@@ -37,7 +38,7 @@ class ContactItem extends React.Component  {
 	// }
 
 	render() {		
-		const { onStatusChange } = this.props;
+		const { onStatusChange, onDelete } = this.props;
 		const { Avatar, Name, Created, Role, Status, Email, Gender } = this.props;
 		const URL = `https://randomuser.me/api/portraits/${Gender}/${Avatar}.jpg`;
 
@@ -52,7 +53,7 @@ class ContactItem extends React.Component  {
 			<tr>
 				<td>
 					<img src={ URL } alt="" />
-					<a href="#" className="user-link">{Name}</a>
+					<Link to="/" className="user-link">{Name}</Link>
 					<span className="user-subhead">{Role}</span>
 				</td>
 				<td>
@@ -62,27 +63,27 @@ class ContactItem extends React.Component  {
 					<span className={statusStyle} onClick={onStatusChange}>{Status}</span>
 				</td>
 				<td>
-					<a href="#">{Email}</a>
+					<Link to="/">{Email}</Link>
 				</td>
 				<td>
-					<a href="#" className="table-link">
+					<Link to="/" className="table-link">
 						<span className="fa-stack">
 							<i className="fa fa-square fa-stack-2x"></i>
 							<i className="fa fa-search-plus fa-stack-1x fa-inverse"></i>
 						</span>
-					</a>
-					<a href="#" className="table-link">
+					</Link>
+					<Link to="/" className="table-link">
 						<span className="fa-stack">
 							<i className="fa fa-square fa-stack-2x"></i>
 							<i className="fa fa-pencil fa-stack-1x fa-inverse"></i>
 						</span>
-					</a>
-					<a href="#" className="table-link danger">
+					</Link>
+					<Link to="/" className="table-link danger">
 						<span className="fa-stack">
 							<i className="fa fa-square fa-stack-2x"></i>
-							<i className="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+							<i className="fa fa-trash-o fa-stack-1x fa-inverse" onClick={onDelete}></i>
 						</span>
-					</a>
+					</Link>
 				</td>
 			</tr>
 		)

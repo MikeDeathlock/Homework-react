@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import ContactItem from "./ContactItem/ContactItem"
 
-const ContactList = ({ List, onStatusChange }) => {
+const ContactList = ({ List, onStatusChange, onDelete }) => {
 	const item = List.map(contact => {
 		return (
-			<ContactItem key={contact.Id} Id={contact.Id} Avatar={contact.Avatar} Name={contact.Name} Created={contact.Created} Role={contact.Role} Status={contact.Status} Email={contact.Email} Gender={contact.Gender} onStatusChange={ () => onStatusChange(contact.Id)} />
+			<ContactItem key={contact.Id} Id={contact.Id} Avatar={contact.Avatar} Name={contact.Name} Created={contact.Created} Role={contact.Role} Status={contact.Status} Email={contact.Email} Gender={contact.Gender} onStatusChange={ () => onStatusChange(contact.Id)} onDelete={ () => onDelete(contact.Id)} />
 		)
 	})
     return(
@@ -25,7 +25,7 @@ const ContactList = ({ List, onStatusChange }) => {
 						                </tr>
 					                </thead>
 									<tbody>
-										{item}
+										{item.length > 0 ? item : <h2>Contact list is empty</h2>}
 									</tbody>                                    
                                 </table>
                             </div>

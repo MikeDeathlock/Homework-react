@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
@@ -8,18 +9,18 @@ const Footer = () => {
                 <div className="container">
                     <div className="footer-navigation">
                         <ul className="footer-list">
-                            <li><a href="#">Home</a></li>                                                     
-                            <li><a href="#">About Us</a></li>                            
-                            <li><a href="#">Contacts</a></li>                      
+                            <li><Link to="/">Home</Link></li>                                                     
+                            <li><Link to="/">About Us</Link></li>                            
+                            <li><Link to="/">Contacts</Link></li>                      
                         </ul>
                     </div>
                     <div className="footer-links">
-                        <a href="#"><i className="fa fa-twitter-square"></i></a>
-                        <a href="#"><i className="fa fa-facebook-square"></i></a>
-                        <a href="#"><i className="fa fa-telegram"></i></a>
+                        <Link to="/"><i className="fa fa-twitter-square"></i></Link>
+                        <Link to="/"><i className="fa fa-facebook-square"></i></Link>
+                        <Link to="/"><i className="fa fa-telegram"></i></Link>
                     </div>
                     <div className="bottom-footer">
-                        <p>Created by Myself <a href="#">MyREACTsite.com</a></p>
+                        <p>Created by Myself <Link to="/">MyREACTsite.com</Link></p>
                     </div>
                 </div>
             </div>

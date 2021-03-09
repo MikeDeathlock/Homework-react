@@ -38,7 +38,7 @@
 }
 
 .main-header .header-navigation {
-    width: 75%;
+    width: 55%;
 }
 
 .header-navigation .navigation-list {
@@ -60,4 +60,16 @@
 .navigation-list a {
     text-decoration: none;
     color: black;
+}
+
+.navigation-list a:hover {
+    color: red;
+}
+
+.main-header .header-search {
+    width: 20%;
+}
+
+.header-search input {
+    padding-left: 7px;
 }

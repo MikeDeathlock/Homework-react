@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
@@ -8,18 +9,21 @@ const Header = () => {
                 <div className="container">
                     <div className="main-header">
                         <div className="header-logo">
-                            <a href="#">
+                            <Link to="/">
                                 <p className="logo">My<span>REACT</span>site</p>
-                            </a>
+                            </Link>
                         </div>
                         <div className="header-navigation">
                             <ul className="navigation-list">
-                                <li><a href="#">Home</a></li>                            
-                                <li><a href="#">Category</a></li>                            
-                                <li><a href="#">About Us</a></li>                            
-                                <li><a href="#">Contacts</a></li>                            
-                                <li><a href="#">Log in</a></li>                            
+                                <li><Link to="/">Home</Link></li>                            
+                                <li><Link to="/">Category</Link></li>                            
+                                <li><Link to="/">About Us</Link></li>                            
+                                <li><Link to="/add-item">Add Item</Link></li>                            
+                                <li><Link to="/">Log in</Link></li>                            
                             </ul>
+                        </div>
+                        <div className="header-search">
+                            <input type="text" name="search" placeholder="Search" />                        
                         </div>
                     </div>                    
                 </div>

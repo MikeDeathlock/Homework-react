@@ -3,6 +3,7 @@
 
 body {
 	padding: 0;
+	background-color: rgb(136, 87, 155);
 }
 
 
@@ -37,14 +38,14 @@ body {
 }
 
 .table thead>tr>th {
-	border-bottom: 1px solid #C2C2C2;
+	border-bottom: 1px solid #f5f1f1;
 	padding-bottom: 0;
 }
 
 .table tbody>tr>td {
 	font-size: 0.875em;
-	background: #f5f5f5;
-	border-top: 10px solid #fff;
+	background: #cfcbcb;
+	border-top: 10px solid rgb(136, 135, 135);
 	vertical-align: middle;
 	padding: 12px 8px;
 }
@@ -60,6 +61,7 @@ body {
 	padding: 0 5px;
 	padding-bottom: 5px;
 	font-weight: normal;
+	color: white;
 }
 
 .table thead>tr>th>a span {
