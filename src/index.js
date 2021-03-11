@@ -14,9 +14,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 // Components
 import Header from "./Components/Header/Header";
-import Search from "./Components/Search/Search";
 import ContactList from "./Components/ContactList/ContactList";
 import AddItem from "./Components/AddItem/AddItem";
+import ChangeItem from "./Components/ChangeItem/ChangeItem";
 import Footer from "./Components/Footer/Footer";
 import Page404 from "./Components/Page404/Page404";
 
@@ -83,7 +83,8 @@ class App extends Component {
         "Email": "jack@nicholson.com",
         "Gender": "men"
       }
-    ]
+    ],
+    currentContact: ""
   }
 
   onDelete = (Id) => {
@@ -97,6 +98,31 @@ class App extends Component {
       };
     });    
   }
+
+  onEdit = (Id) => {
+    const index = this.state.List.findIndex((elem) => elem.Id === Id );
+    let newList = this.state.List.slice();    
+    this.setState(() => {
+      return {
+        currentContact: newList[index],
+      };
+    });  
+  }
+
+  editContacts = (editContact) => {    
+    const tmpList = this.state.List.slice();
+    console.log(tmpList)
+    for(let i = 0; i < tmpList.length; i++) {
+      if(tmpList[i].Id === editContact.Id){
+        tmpList[i] = editContact;
+        this.setState(() => {
+          return {
+            List: tmpList
+          }
+        })
+      }  
+    }
+  } 
 
   onStatusChange = (Id) =>{    
     const index = this.state.List.findIndex((elem) => elem.Id === Id );
@@ -114,18 +140,30 @@ class App extends Component {
       return {
         List: newList
       }
-    })
-    
+    })    
   }
 
+  onAddContact = (newContact) => {
+    const tmpList = this.state.List.slice();
+    const newList = [...tmpList, newContact];
+    this.setState(() => {
+      return {
+        List: newList
+      }
+    })
+  }
+
+  
+
   render(){
-    const { List } = this.state;
+    const { List, currentContact } = this.state;
     return(                      
         <Router>
           <Header />         
             <Switch>
-              <Route path="/" exact render={() => <ContactList List={List} onStatusChange={this.onStatusChange} onDelete={this.onDelete} />} />
-              <Route path="/add-item" exact render={() => <AddItem />}/>
+              <Route path="/" exact render={() => <ContactList List={List} currentContact={currentContact} onStatusChange={this.onStatusChange} onDelete={this.onDelete} onEdit={this.onEdit}  />} />
+              <Route path="/add-item" exact render={() => <AddItem onAddContact={this.onAddContact} />}/>
+              <Route path="/change-item" exact render={() => <ChangeItem currentContact={currentContact} onEdit={this.onEdit} editContacts={this.editContacts} />}/>
               <Route render={() => <Page404 />}/>   
             </Switch>
           <Footer />
