@@ -73,8 +73,8 @@ class AddItem extends React.Component {
 			)
 		}		
 		return(
-			<Fragment>
-				<div className="container-fluid bg-addItem">
+			
+				<div className="bg-addItem">
 					<div className="container">
 						<div className="main-addItem">
 							<h2>Add new item.</h2>
@@ -110,7 +110,7 @@ class AddItem extends React.Component {
 						</div>
 					</div>
 				</div>
-			</Fragment>
+			
 		)
 	}   
 }

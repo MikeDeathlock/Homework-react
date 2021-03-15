@@ -2,7 +2,10 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-const Header = () => {
+
+
+const Header = ({ onInputChange }) => {
+
     return(
         <Fragment>
             <div className="container-fluid bg-header">
@@ -23,7 +26,7 @@ const Header = () => {
                             </ul>
                         </div>
                         <div className="header-search">
-                            <input type="text" name="search" placeholder="Search" />                        
+                            <input type="text" name="search" placeholder="Search" onChange={onInputChange} />                        
                         </div>
                     </div>                    
                 </div>

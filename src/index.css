@@ -6,6 +6,16 @@ body {
 	background-color: rgb(136, 87, 155);
 }
 
+#root {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.main-box {
+	min-height: 80vh;
+}
+
 
 /* USER LIST TABLE */
 .user-list tbody td>img {
