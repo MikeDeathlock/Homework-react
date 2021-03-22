@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import { connect } from "react-redux";
 import "./ContactItem.css";
+import { deleteOneContact } from "../../../Actions/ContactListActions";
+import { saveData } from "../../../Services/api-service";
 
 class ContactItem extends React.Component  {
 	// it is a state for local change
@@ -37,10 +41,28 @@ class ContactItem extends React.Component  {
 	// 	}
 	// }
 
-	render() {		
-		const { onStatusChange, onDelete, onEdit } = this.props;
-		const { Avatar, Name, Created, Role, Status, Email, Gender } = this.props;
-		const URL = `https://randomuser.me/api/portraits/${Gender}/${Avatar}.jpg`;
+	onDelete = () => {
+		const { List } = this.props;		
+		const index = List.findIndex((elem) => elem.Id === this.props.Id);
+		const { deleteOneContact } = this.props;				
+		List.splice(index, 1);		
+		deleteOneContact(List);
+		saveData(List);
+		// Перший спосіб========================
+		// const partOne = List.slice(0, index);
+		// const partTwo = List.slice(index + 1);
+		// const newList = [...partOne, ...partTwo];
+		// const { deleteOneContact } = this.props;		
+		// deleteOneContact(newList);
+		// saveData(newList);	
+	}
+
+	
+	render() {	
+		const { onStatusChange, onEdit } = this.props;		
+		const { Avatar, Name, Created, Role, Status, Email, Gender } = this.props;		
+		
+		const URL = `https://randomuser.me/api/portraits/${Gender}/${Avatar}.jpg`;		
 
 		let statusStyle = "badge bg-secondary status";
 		switch (Status) {
@@ -78,7 +100,7 @@ class ContactItem extends React.Component  {
 							<i className="fa fa-pencil fa-stack-1x fa-inverse"></i>
 						</span>
 					</Link>
-					<Link to="/" className="table-link danger" onClick={onDelete}>
+					<Link to="/" className="table-link danger" onClick={this.onDelete}>
 						<span className="fa-stack">
 							<i className="fa fa-square fa-stack-2x"></i>
 							<i className="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -90,4 +112,13 @@ class ContactItem extends React.Component  {
 	}    
 }
 
-export default ContactItem
+const mapStateToProps = ({ ContactListReducer }) => {
+	const { List } = ContactListReducer;
+	return { List }
+}
+
+const mapDispatchToProps = {
+	deleteOneContact
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactItem);

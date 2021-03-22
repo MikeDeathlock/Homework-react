@@ -1,13 +1,24 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import ContactItem from "./ContactItem/ContactItem";
+import { connect } from "react-redux";
+import { updateDataBase } from "../../Services/api-service";
+import { getAllContacts } from "../../Actions/ContactListActions";
 
 
-const ContactList = ({ List, onStatusChange, onDelete, onEdit, searchContact}) => {	
-	const item = searchContact.map(contact => {
-		return (
-			<ContactItem key={contact.Id} Id={contact.Id} Avatar={contact.Avatar} Name={contact.Name} Created={contact.Created} Role={contact.Role} Status={contact.Status} Email={contact.Email} Gender={contact.Gender} onStatusChange={ () => onStatusChange(contact.Id)} onDelete={ () => onDelete(contact.Id)} onEdit={ () => onEdit(contact.Id)} />
+
+const ContactList = ({ List, getAllContacts}) => {
+	useEffect(() => {
+		updateDataBase().then(data => {			
+			getAllContacts(data)
+		})
+	})	
+	const item = List.map(contact => {
+		return (			
+			<ContactItem key={contact.Id} Id={contact.Id} Avatar={contact.Avatar} Name={contact.Name} Created={contact.Created} Role={contact.Role} Status={contact.Status} Email={contact.Email} Gender={contact.Gender}/>
 		)
 	})
+
+	
 	
 
     return(
@@ -41,4 +52,13 @@ const ContactList = ({ List, onStatusChange, onDelete, onEdit, searchContact}) =
     )
 }
 
-export default ContactList
+const mapStateToProps = ({ContactListReducer}) => {	
+	const {List} = ContactListReducer;
+	return {List}
+}
+
+const mapDispatchToProps = {
+    getAllContacts
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList)

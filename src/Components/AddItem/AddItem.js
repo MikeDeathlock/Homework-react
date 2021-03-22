@@ -2,6 +2,9 @@ import React, { Fragment } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import "./AddItem.css";
 import { Redirect } from "react-router-dom";
+import { saveData } from "../../Services/api-service";
+import { connect } from "react-redux";
+import { makeNewContact } from "../../Actions/ContactListActions";
 
 class AddItem extends React.Component {
 
@@ -58,8 +61,11 @@ class AddItem extends React.Component {
 		let Created = Date.now();
 		const Id = uuidv4();
 		const newContact = { Id, Avatar, Name, Email, Status, Role, Gender, Created };
-		const { onAddContact } = this.props;
-		onAddContact(newContact);
+		const { List } = this.props;
+		const { makeNewContact } = this.props;		
+		List.push(newContact);
+		makeNewContact(List);
+		saveData(List);
 		this.setState({
 			isRedirect: true
 		})
@@ -115,5 +121,14 @@ class AddItem extends React.Component {
 	}   
 }
 
-export default AddItem
+const mapStateToProps = ({ ContactListReducer }) => {
+	const { List } = ContactListReducer;
+	return { List }
+}
+
+const mapDispatchToProps = {
+    makeNewContact
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddItem)
 
